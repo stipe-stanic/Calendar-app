@@ -1,7 +1,17 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Login";
+import Calendar from "./Calendar";
 
 function App() {
-  return <div></div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Calendar />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
