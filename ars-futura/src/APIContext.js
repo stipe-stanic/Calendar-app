@@ -1,8 +1,10 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext, createContext, useState } from "react";
 
 const APIContext = createContext();
 
 const APIProvider = ({ children }) => {
+  const [event1, setEvents] = useState(null);
+
   var gapi = window.gapi;
   var CLIENT_ID =
     "747061863296-f2hb1umn9dbp2lbmp27d5ac2mfmba3f3.apps.googleusercontent.com";
@@ -86,7 +88,7 @@ const APIProvider = ({ children }) => {
         .getAuthInstance()
         .signIn()
         .then(() => {
-          var request = gapi.client.calendar.events
+          gapi.client.calendar.events
             .list({
               calendarId: "primary",
               timeMin: new Date().toISOString(),
@@ -98,11 +100,13 @@ const APIProvider = ({ children }) => {
             .then((response) => {
               const events = response.result.items;
               console.log("EVENTS: ", events);
-              console.log(events[0].id);
+              setEvents(events);
             });
         });
     });
   };
+
+  console.log(event1);
 
   const deleteEvents = () => {
     gapi.load("client:auth2", () => {
@@ -121,7 +125,7 @@ const APIProvider = ({ children }) => {
         .getAuthInstance()
         .signIn()
         .then(() => {
-          var request = gapi.client.calendar.events
+          gapi.client.calendar.events
             .list({
               calendarId: "primary",
               timeMin: new Date().toISOString(),
