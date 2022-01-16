@@ -1,9 +1,29 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 
 const APIContext = createContext();
 
 const APIProvider = ({ children }) => {
-  const [event1, setEvents] = useState(null);
+  const [calendarEvents, setCalendarEvents] = useState([]);
+  const [createEvent, setCreateEvent] = useState({
+    summary: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+  });
+
+  // if (calendarEvents.length > 0) {
+  //   calendarEvents.forEach((item) => {
+  //     let day = parseInt(item.start.dateTime.substr(8, 2));
+  //     let date = item.start.dateTime.substr(0, 10);
+  //     let startTime = item.start.dateTime.substr(11, 8);
+  //     let endTime = item.end.dateTime.substr(11, 8);
+
+  //     item.day = day;
+  //     item.date = date;
+  //     item.startTime = startTime;
+  //     item.endTime = endTime;
+  //   });
+  // }
 
   var gapi = window.gapi;
   var CLIENT_ID =
@@ -32,19 +52,19 @@ const APIProvider = ({ children }) => {
         .signIn()
         .then(() => {
           var event = {
-            summary: "Google I/O 2015",
+            summary: createEvent.summary,
             location: "800 Howard St., San Francisco, CA 94103",
             description:
               "A chance to hear more about Google's developer products.",
             start: {
-              dateTime: "2022-01-18T09:00:00-07:00",
-              timeZone: "America/Los_Angeles",
+              dateTime: `${createEvent.date}T${createEvent.startTime}+01:00`,
+              timeZone: "Europe/Zagreb",
             },
             end: {
-              dateTime: "2022-01-18T17:00:00-07:00",
-              timeZone: "America/Los_Angeles",
+              dateTime: `${createEvent.date}T${createEvent.endTime}+01:00`,
+              timeZone: "Europe/Zagreb",
             },
-            recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+            recurrence: ["RRULE:FREQ=DAILY;COUNT=1"],
             attendees: [
               { email: "lpage@example.com" },
               { email: "sbrin@example.com" },
@@ -100,15 +120,13 @@ const APIProvider = ({ children }) => {
             .then((response) => {
               const events = response.result.items;
               console.log("EVENTS: ", events);
-              setEvents(events);
+              setCalendarEvents(events);
             });
         });
     });
   };
 
-  console.log(event1);
-
-  const deleteEvents = () => {
+  const deleteEvents = (eventId) => {
     gapi.load("client:auth2", () => {
       console.log("loaded client");
 
@@ -135,12 +153,10 @@ const APIProvider = ({ children }) => {
               orderBy: "startTime",
             })
             .then((response) => {
-              const events = response.result.items;
-              console.log("EVENTS: ", events);
-              console.log(events[0].id);
+              // const events = response.result.items;
+              // console.log("EVENTS: ", events);
+              // console.log(events[0].id);
             });
-
-          let eventId = "4rsg1849gm2hocv70c6gqmu1a4_20220119T160000Z";
 
           const deleteEvent = async (eventId) => {
             try {
@@ -171,8 +187,22 @@ const APIProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    console.log("STATE: ", calendarEvents);
+  }, [calendarEvents]);
+
   return (
-    <APIContext.Provider value={{ addEvents, getEvents, deleteEvents }}>
+    <APIContext.Provider
+      value={{
+        addEvents,
+        getEvents,
+        deleteEvents,
+        calendarEvents,
+        setCalendarEvents,
+        createEvent,
+        setCreateEvent,
+      }}
+    >
       {children}
     </APIContext.Provider>
   );
