@@ -25,9 +25,14 @@ const CreateEvent = () => {
       createEvent.startTime &&
       createEvent.date
     ) {
-      const newEvent = { ...createEvent, id: new Date().getTime().toString() };
+      const newEvent = {
+        ...createEvent,
+        id: new Date().getTime().toString(),
+        day: parseInt(createEvent.date.substr(8, 2)),
+      };
       setCalendarEvents([...calendarEvents, newEvent]);
-      addEvents();
+
+      addEvents(calendarEvents.id);
       setCreateEvent({ summary: "", date: "", startTime: "", endTime: "" });
     }
   };
