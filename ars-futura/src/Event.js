@@ -9,6 +9,7 @@ export default function Event({
   endTime,
   startTime,
   date,
+  day,
 }) {
   const { calendarEvents, setCalendarEvents, deleteEvents } = useAPIContext();
 
@@ -27,6 +28,7 @@ export default function Event({
         <p>{date}</p>
         <h3>Start Time: {startTime || start.dateTime}</h3>
         <h4>End Time: {endTime || end.dateTime}</h4>
+        <p>{day}</p>
       </div>
       <button onClick={() => remove(id)}>Remove item</button>
       <hr />
