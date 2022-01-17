@@ -4,26 +4,13 @@ const APIContext = createContext();
 
 const APIProvider = ({ children }) => {
   const [calendarEvents, setCalendarEvents] = useState([]);
+  const [days, setDays] = useState([]);
   const [createEvent, setCreateEvent] = useState({
     summary: "",
     date: "",
     startTime: "",
     endTime: "",
   });
-
-  // if (calendarEvents.length > 0) {
-  //   calendarEvents.forEach((item) => {
-  //     let day = parseInt(item.start.dateTime.substr(8, 2));
-  //     let date = item.start.dateTime.substr(0, 10);
-  //     let startTime = item.start.dateTime.substr(11, 8);
-  //     let endTime = item.end.dateTime.substr(11, 8);
-
-  //     item.day = day;
-  //     item.date = date;
-  //     item.startTime = startTime;
-  //     item.endTime = endTime;
-  //   });
-  // }
 
   var gapi = window.gapi;
   var CLIENT_ID =
@@ -34,7 +21,7 @@ const APIProvider = ({ children }) => {
   ];
   var SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-  const addEvents = () => {
+  const addEvents = (id) => {
     gapi.load("client:auth2", () => {
       console.log("loaded client");
 
@@ -56,6 +43,7 @@ const APIProvider = ({ children }) => {
             location: "800 Howard St., San Francisco, CA 94103",
             description:
               "A chance to hear more about Google's developer products.",
+            eventId: id,
             start: {
               dateTime: `${createEvent.date}T${createEvent.startTime}+01:00`,
               timeZone: "Europe/Zagreb",
@@ -187,10 +175,6 @@ const APIProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    console.log("STATE: ", calendarEvents);
-  }, [calendarEvents]);
-
   return (
     <APIContext.Provider
       value={{
@@ -201,6 +185,8 @@ const APIProvider = ({ children }) => {
         setCalendarEvents,
         createEvent,
         setCreateEvent,
+        days,
+        setDays,
       }}
     >
       {children}
