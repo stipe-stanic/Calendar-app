@@ -37,3 +37,13 @@ button {
 .margin {
   margin-top: 10px;
 }
+
+.center-login {
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.signInButton {
+  font-size: 30px;
+}
