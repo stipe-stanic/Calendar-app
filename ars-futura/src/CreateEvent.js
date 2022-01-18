@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useAPIContext } from "./APIContext";
 
 const CreateEvent = () => {
@@ -11,12 +10,16 @@ const CreateEvent = () => {
     setCreateEvent,
   } = useAPIContext();
 
+  /* Every time user types into input field,
+  corresponding name attribute gets it's value assigned */
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setCreateEvent({ ...createEvent, [name]: value });
   };
 
+  /* submit if all input fields have values, creates new props and adds them to existing event object,
+   send POST request to the API, and clears input values */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -29,16 +32,18 @@ const CreateEvent = () => {
         ...createEvent,
         id: new Date().getTime().toString(),
         day: parseInt(createEvent.date.substr(8, 2)),
+        startTimeNumber: parseInt(createEvent.startTime.substr(0, 2)),
       };
+      addEvents(newEvent.id);
       setCalendarEvents([...calendarEvents, newEvent]);
 
-      addEvents(calendarEvents.id);
       setCreateEvent({ summary: "", date: "", startTime: "", endTime: "" });
     }
   };
 
   return (
     <div>
+      <h2>Create Event</h2>
       <form>
         <p type="summary:">
           <input
