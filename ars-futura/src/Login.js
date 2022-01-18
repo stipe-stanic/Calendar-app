@@ -12,7 +12,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="center-login">
       <h2>Login page</h2>
       <GoogleLogin
         clientId="747061863296-f2hb1umn9dbp2lbmp27d5ac2mfmba3f3.apps.googleusercontent.com"
