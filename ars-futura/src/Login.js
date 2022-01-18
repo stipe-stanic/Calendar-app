@@ -5,6 +5,7 @@ import GoogleLogin from "react-google-login";
 const Login = () => {
   const navigate = useNavigate();
 
+  /* navigates to main page after login */
   const responseGoogle = (response) => {
     navigate("/home");
     console.log(response);

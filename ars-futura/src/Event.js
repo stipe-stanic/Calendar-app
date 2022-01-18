@@ -13,6 +13,7 @@ export default function Event({
 }) {
   const { calendarEvents, setCalendarEvents, deleteEvents } = useAPIContext();
 
+  /* filters array based on id and sends DELETE request to API*/
   const remove = (id) => {
     const results = calendarEvents.filter((eventItem) => eventItem.id !== id);
     deleteEvents(id);
@@ -20,18 +21,17 @@ export default function Event({
   };
 
   return (
-    <article>
+    <article className="margin">
       <div>
         <p>{summary}</p>
       </div>
       <div>
         <p>{date}</p>
+        {/* uses second prop if the first prop doesn't exist */}
         <h3>Start Time: {startTime || start.dateTime}</h3>
         <h4>End Time: {endTime || end.dateTime}</h4>
-        <p>{day}</p>
       </div>
-      <button onClick={() => remove(id)}>Remove item</button>
-      <hr />
+      <button onClick={() => remove(id)}>Remove event</button>
     </article>
   );
 }
