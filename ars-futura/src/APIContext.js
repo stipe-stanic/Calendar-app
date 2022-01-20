@@ -8,6 +8,7 @@ const APIProvider = ({ children }) => {
 
   const [showToday, setShowToday] = useState(false);
   const [showMonth, setShowMonth] = useState(false);
+  const [isEventsToday, setIsEventsToday] = useState(false);
 
   const [currentDate, setCurrentDate] = useState({
     today: "",
@@ -26,7 +27,7 @@ const APIProvider = ({ children }) => {
   var gapi = window.gapi;
   var CLIENT_ID =
     "747061863296-f2hb1umn9dbp2lbmp27d5ac2mfmba3f3.apps.googleusercontent.com";
-  var API_KEY = "AIzaSyAaNGo9QtR-7G8wNlY6mVv6yi-PSvVMb3s";
+  var API_KEY = "AIzaSyAKcOLVyb7MTYOZEEklapiAkbCtqwDP5ok";
   var DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
   ];
@@ -223,6 +224,8 @@ const APIProvider = ({ children }) => {
         showToday,
         showMonth,
         setShowMonth,
+        isEventsToday,
+        setIsEventsToday,
       }}
     >
       {children}
