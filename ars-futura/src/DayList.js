@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAPIContext } from "./APIContext";
 import Day from "./Day";
 
@@ -8,6 +8,9 @@ const DayList = () => {
     currentDate,
     setShowToday,
     showToday,
+    setIsEventsToday,
+    isEventsToday,
+    calendarEvents,
     // setShowMonth,
     // showMonth,
   } = useAPIContext();
@@ -15,6 +18,14 @@ const DayList = () => {
   const toggleTodayView = () => {
     setShowToday(!showToday);
   };
+
+  useEffect(() => {
+    for (let i = 0; i < calendarEvents.length; i++) {
+      if (calendarEvents[i].day === currentDate.today) {
+        setIsEventsToday(true);
+      }
+    }
+  }, [calendarEvents, setIsEventsToday, currentDate.today]);
 
   /* display functionality for the events in next 30 days*/
 
@@ -35,7 +46,10 @@ const DayList = () => {
         {days.map((item) => {
           /* renders all events in next seven days */
           if (!showToday) {
-            if (item.value > currentDate.sevenDaysFromToday) {
+            if (
+              item.value > currentDate.sevenDaysFromToday ||
+              item.value < currentDate.today
+            ) {
               return null;
             }
             return (
@@ -54,6 +68,7 @@ const DayList = () => {
           return null;
         })}
       </div>
+      {!isEventsToday && showToday && <h2>No events today!</h2>}
     </section>
   );
 };
