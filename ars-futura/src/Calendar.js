@@ -12,8 +12,8 @@ const Calendar = () => {
     setCalendarEvents,
     setDays,
     setCurrentDate,
-    // days,
-    // currentDate,
+    days,
+    currentDate,
   } = useAPIContext();
 
   /* retrieves the data if it's stored in local storage */
@@ -93,22 +93,25 @@ const Calendar = () => {
       today: dateTodayInt,
       thirtyDaysFromToday: date30DaysInt,
     });
-    // console.log(currentDate);
   }, [calendarEvents, setCurrentDate]);
+
+  useEffect(() => {
+    console.log(currentDate);
+  }, [currentDate]);
 
   /* console log for 'days' array */
 
-  // useEffect(() => {
-  //   if (days.length > 0) {
-  //     console.log("DAYS: ", days);
-  //   }
-  // }, [days]);
+  useEffect(() => {
+    if (days.length > 0) {
+      console.log("DAYS: ", days);
+    }
+  }, [days]);
 
   /* console log for 'events' array */
 
-  // useEffect(() => {
-  //   console.log("STATE: ", calendarEvents);
-  // }, [calendarEvents]);
+  useEffect(() => {
+    console.log("STATE: ", calendarEvents);
+  }, [calendarEvents]);
 
   return (
     <div className="center">
