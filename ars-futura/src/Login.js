@@ -8,7 +8,12 @@ const Login = () => {
   /* navigates to main page after login */
   const responseGoogle = (response) => {
     navigate("/home");
-    console.log(response);
+    const { code } = response;
+    console.log(code);
+  };
+
+  const responseError = (error) => {
+    console.log(error);
   };
 
   return (
@@ -18,8 +23,10 @@ const Login = () => {
         clientId="747061863296-f2hb1umn9dbp2lbmp27d5ac2mfmba3f3.apps.googleusercontent.com"
         buttonText="Login with Google"
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onFailure={responseError}
         cookiePolicy="single_host_origin"
+        responseType="code"
+        accessType="offline"
       />
     </div>
   );
