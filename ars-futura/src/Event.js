@@ -1,5 +1,6 @@
 import React from "react";
-import { useAPIContext } from "./APIContext";
+import { useGlobalContext } from "./Context/GlobalContext";
+import { useAPIContext } from "./Context/APIContext";
 
 export default function Event({
   summary,
@@ -11,7 +12,8 @@ export default function Event({
   date,
   day,
 }) {
-  const { calendarEvents, setCalendarEvents, deleteEvents } = useAPIContext();
+  const { calendarEvents, setCalendarEvents } = useGlobalContext();
+  const { deleteEvents } = useAPIContext();
 
   /* filters array based on id and sends DELETE request to API*/
   const remove = (id) => {

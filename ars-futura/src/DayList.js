@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAPIContext } from "./APIContext";
+import { useGlobalContext } from "./Context/GlobalContext";
 import Day from "./Day";
 
 const DayList = () => {
@@ -13,7 +13,7 @@ const DayList = () => {
     calendarEvents,
     // setShowMonth,
     // showMonth,
-  } = useAPIContext();
+  } = useGlobalContext();
 
   const toggleTodayView = () => {
     setShowToday(!showToday);

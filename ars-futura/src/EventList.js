@@ -1,14 +1,14 @@
 /* Display events in order */
 
 // import React from "react";
-// import { useAPIContext } from "./APIContext";
+// import { useGlobalContext } from "./Context/GlobalContext";
 // import Event from "./Event";
 
 // export default function EventList() {
-//   const { calendarEvents } = useAPIContext();
+//   const { calendarEvents } = useGlobalContext();
 
 //   return (
-//     <section className="event-width">
+//     <section className="event-widtGlobal
 //       <h2>Events</h2>
 //       <hr />
 //       <div>

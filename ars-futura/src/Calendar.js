@@ -1,20 +1,22 @@
 import React from "react";
 import { useEffect } from "react";
-import { useAPIContext } from "./APIContext";
+import { useGlobalContext } from "./Context/GlobalContext";
+import { useAPIContext } from "./Context/APIContext";
 import CreateEvent from "./CreateEvent";
 import DayList from "./DayList";
 // import EventList from "./EventList";
 
 const Calendar = () => {
   const {
-    getEvents,
     calendarEvents,
     setCalendarEvents,
     setDays,
     setCurrentDate,
     days,
     currentDate,
-  } = useAPIContext();
+  } = useGlobalContext();
+
+  const { getEvents } = useAPIContext();
 
   /* retrieves the data if it's stored in local storage */
   useEffect(() => {
@@ -74,7 +76,7 @@ const Calendar = () => {
   useEffect(() => {
     /* Getting a date 0, 7, 30 days from now */
     let date7Days = new Date();
-    date7Days.setDate(date7Days.getDate() + 7);
+    date7Days.setDate(date7Days.getDate() + 6);
 
     let dateToday = new Date();
     dateToday.setDate(dateToday.getDate() + 0);

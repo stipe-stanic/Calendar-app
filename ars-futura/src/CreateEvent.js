@@ -1,14 +1,12 @@
 import React from "react";
-import { useAPIContext } from "./APIContext";
+import { useAPIContext } from "./Context/APIContext";
+import { useGlobalContext } from "./Context/GlobalContext";
 
 const CreateEvent = () => {
-  const {
-    setCalendarEvents,
-    calendarEvents,
-    addEvents,
-    createEvent,
-    setCreateEvent,
-  } = useAPIContext();
+  const { setCalendarEvents, calendarEvents, createEvent, setCreateEvent } =
+    useGlobalContext();
+
+  const { addEvents } = useAPIContext();
 
   /* Every time user types into input field,
   corresponding name attribute gets it's value assigned */

@@ -1,9 +1,9 @@
 import React from "react";
 import Event from "./Event";
-import { useAPIContext } from "./APIContext";
+import { useGlobalContext } from "./Context/GlobalContext";
 
 const Day = ({ value }) => {
-  const { calendarEvents } = useAPIContext();
+  const { calendarEvents } = useGlobalContext();
 
   return (
     <div className="event-height">
