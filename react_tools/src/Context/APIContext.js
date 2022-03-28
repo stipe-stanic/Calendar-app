@@ -6,7 +6,7 @@ const APIContext = createContext();
 const APIProvider = ({ children }) => {
   const { createEvent, setCalendarEvents } = useGlobalContext();
 
-  /* const values connecting with the API */
+  /* const values for connecting with the API */
   const gapi = window.gapi;
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -31,7 +31,7 @@ const APIProvider = ({ children }) => {
     });
   }, [API_KEY, CLIENT_ID, gapi, SCOPES]);
 
-  /* sends POST request to API, send request body with dynamic values, ---> id property gets overwrtitten when pulling data back <---  */
+  /* sends POST request to API, send request body with dynamic values, ---> id property gets overwritten when pulling data back <---  */
   const addEvents = (id) => {
     /* signs-in before sending request */
     // gapi.auth2

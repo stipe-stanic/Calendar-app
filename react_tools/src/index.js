@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { APIProvider } from "./Context/APIContext";
+import { APIProvider } from "./context/APIContext";
 import "./index.css";
 import App from "./App";
-import { GlobalProvider } from "./Context/GlobalContext";
+import { GlobalProvider } from "./context/GlobalContext";
 
 ReactDOM.render(
   <React.StrictMode>

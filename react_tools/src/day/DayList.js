@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useGlobalContext } from "./Context/GlobalContext";
+import { useGlobalContext } from "../context/GlobalContext";
 import Day from "./Day";
 
 const DayList = () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import { useAPIContext } from "./Context/APIContext";
-import { useGlobalContext } from "./Context/GlobalContext";
+import { useAPIContext } from "../context/APIContext";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const CreateEvent = () => {
   const { setCalendarEvents, calendarEvents, createEvent, setCreateEvent } =

@@ -1,6 +1,6 @@
 import React from "react";
-import { useGlobalContext } from "./Context/GlobalContext";
-import { useAPIContext } from "./Context/APIContext";
+import { useGlobalContext } from "../context/GlobalContext";
+import { useAPIContext } from "../context/APIContext";
 
 export default function Event({
   summary,

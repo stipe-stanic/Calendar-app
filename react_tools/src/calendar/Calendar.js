@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
-import { useGlobalContext } from "./Context/GlobalContext";
-import { useAPIContext } from "./Context/APIContext";
+import { useGlobalContext } from "../context/GlobalContext";
+import { useAPIContext } from "../context/APIContext";
 import CreateEvent from "./CreateEvent";
-import DayList from "./DayList";
+import DayList from "../day/DayList";
 // import EventList from "./EventList";
 
 const Calendar = () => {

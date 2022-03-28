@@ -1,6 +1,6 @@
 import React from "react";
-import Event from "./Event";
-import { useGlobalContext } from "./Context/GlobalContext";
+import Event from "../event/Event";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const Day = ({ value }) => {
   const { calendarEvents } = useGlobalContext();
